@@ -1,10 +1,8 @@
 name: Build
 on:
-  push:
+  pull-request:
     branches:
-      - master
-  pull_request:
-    types: [opened, synchronize, reopened]
+      - main
 jobs:
   build:
     name: Build
@@ -45,6 +43,6 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"dl-template" /o:"delorenzosoftware" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
 
           - name: Unity - Builder
-          uses: game-ci/unity-builder@v2.0-alpha-13
+            uses: game-ci/unity-builder@v2.0-alpha-13
 
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
