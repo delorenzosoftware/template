@@ -1,0 +1,16 @@
+{
+  "name": "com.mekatronik.extensions",
+  "displayName": "Extensions",
+  "version": "1.0.9",
+  "unity": "2020.3",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/skynet-applications/essentials-extensions"
+  },
+  "keywords": [
+    "mekatronik",
+    "extensions"
+  ],
+  "category": "Extensions"
+}
