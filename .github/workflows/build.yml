@@ -38,8 +38,8 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
       - name: Install dotnet-sonarscanner
         run: |
-          mkdir ~/.dotnet/tools
-          cd ~/.dotnet/tools
+          mkdir /home/.dotnet/tools
+          cd /home/.dotnet/tools
           dotnet tool install --global dotnet-sonarscanner
       - name: Build and analyze
         env:
