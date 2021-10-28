@@ -30,9 +30,18 @@ jobs:
           path: .\.sonar\scanner
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
+      #- name: Unity - Builder
+      #  uses: game-ci/unity-builder@v2.0-alpha-13
+      #  env:
+      #    UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+      #    UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      #    UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
       - name: Install dotnet-sonarscanner
         run: |
-          dotnet tool install --global dotnet-sonarscanner --tool-path ~/bin
+          mkdir /home/.dotnet
+          mkdir /home/.dotnet/tools
+          cd /home/.dotnet/tools
+          dotnet tool install --global dotnet-sonarscanner
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
