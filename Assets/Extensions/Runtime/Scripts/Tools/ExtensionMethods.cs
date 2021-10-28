@@ -3,9 +3,12 @@ using System.Collections;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using UnityEditor;
 using UnityEngine;
 using Component = UnityEngine.Component;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Bazinga.Extensions
 {
@@ -108,6 +111,7 @@ namespace Bazinga.Extensions
             return go.AddComponent<T>().GetCopyOf(toAdd) as T;
         }
 
+#if UNITY_EDITOR
         public static string AsStringValue(this SerializedProperty property)
         {
             switch (property.propertyType)
@@ -183,5 +187,6 @@ namespace Bazinga.Extensions
         }
 
         public static string GetFixedPropertyPath(this SerializedProperty property) => property.propertyPath.Replace(".Array.data[", "[");
+#endif
     }
 }
