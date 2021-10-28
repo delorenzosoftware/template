@@ -8,8 +8,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: windows-latest
-      arch: x64-windows
+    runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 11
         uses: actions/setup-java@v1
@@ -37,8 +36,6 @@ jobs:
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-      - name: Setup MSBuild.exe
-        uses: microsoft/setup-msbuild@v1.0.2
       - name: Unity - Builder
         uses: game-ci/unity-builder@v2.0-alpha-13
       - name: Build and analyze
@@ -49,5 +46,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"delorenzosoftware_template" /o:"delorenzosoftware" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          msbuild DynaCOmics.sln /t:Rebuild
+          dotnet build DynaCOmics.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
