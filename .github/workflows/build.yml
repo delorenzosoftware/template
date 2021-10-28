@@ -33,8 +33,7 @@ jobs:
       - name: Install SonarCloud scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+          dotnet tool install --global dotnet-sonarscannerr
       - name: Unity - Builder
         uses: game-ci/unity-builder@v2.0-alpha-13
       - name: Build and analyze
@@ -43,6 +42,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           DeployExtension: False
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"delorenzosoftware_template" /o:"delorenzosoftware" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet sonarscanner begin /k:"delorenzosoftware_template" /o:"delorenzosoftware" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build DynaCOmics.sln
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          dotnet sonarscanner end end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
