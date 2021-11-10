@@ -10,7 +10,7 @@ public class SpinnerUnit : SpinnerControl, ISpinnerUnitAdapter
     public JointMotor Motor { get => _joint.motor; set => _joint.motor = value; }
     public float SpeedFactor => _speedFactor;
 
-	[Space()]
+    [Space()]
     [Header("Dynamics Configuration")]
     [SerializeField] private PhysicMaterial _friction;
 
@@ -76,7 +76,7 @@ public class SpinnerUnit : SpinnerControl, ISpinnerUnitAdapter
         _joint.anchor = Vector3.zero;
 
         var motor = _joint.motor;
-        motor.force = _motorForce;
+        motor.force = 0;
         _joint.motor = motor;
 
         if (transform.parent)
