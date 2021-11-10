@@ -69,6 +69,7 @@ jobs:
           sudo mkdir /home/.dotnet/tools
           cd /home/.dotnet/tools
           dotnet tool install --global dotnet-sonarscanner
+          cd -
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
