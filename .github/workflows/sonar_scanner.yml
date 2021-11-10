@@ -1,0 +1,20 @@
+name: Sonar Scanner
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sonarscanner for dotnet
+        uses: Secbyte/dotnet-sonarscanner@v1.2
+        with:
+          buildCommand: dotnet build .
+          testCommand: dotnet test .
+          projectKey: delorenzosoftware_template
+          projectName: template
+          sonarOrganisation: delorenzosoftware
+          beginArguments: /d:sonar.verbose="true" /d:sonar.cs.opencover.reportsPaths="/path/to/coverage.xml" /d:sonar.coverage.exclusions="**/*.cs"
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
