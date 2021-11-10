@@ -42,15 +42,39 @@ jobs:
         with:
           name: Test results for ${{ matrix.testMode }}
           path: ${{ steps.tests.outputs.artifactsPath }}
-      - name: Sonarscanner for dotnet
-        uses: Secbyte/dotnet-sonarscanner@v1.2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
         with:
-          buildCommand: dotnet build .
-          testCommand: dotnet test .
-          projectKey: delorenzosoftware_template
-          projectName: template
-          sonarOrganisation: delorenzosoftware
-          beginArguments: /d:sonar.verbose="true" /d:sonar.cs.opencover.reportsPaths="./coverage-results/coverage.xml" /d:sonar.coverage.exclusions="**/*.cs"
+          java-version: 1.11
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v1
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+      - name: Install dotnet-sonarscanner
+        run: |
+          sudo mkdir /home/.dotnet
+          sudo mkdir /home/.dotnet/tools
+          cd /home/.dotnet/tools
+          dotnet tool install --global dotnet-sonarscanner
+      - name: Build and analyze
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          DeployExtension: False
+        run: |
+          dotnet sonarscanner begin /k:"delorenzosoftware_template" /o:"delorenzosoftware" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet build DynaCOmics.sln
+          dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
