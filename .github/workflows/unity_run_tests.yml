@@ -42,10 +42,15 @@ jobs:
         with:
           name: Test results for ${{ matrix.testMode }}
           path: ${{ steps.tests.outputs.artifactsPath }}
-      - name: Upload XML report to Codecov
-        uses: codecov/codecov-action@v2
+      - name: Sonarscanner for dotnet
+        uses: Secbyte/dotnet-sonarscanner@v1.2
         with:
-          name: PlayMode
-          flags: automated
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage-results/**/*.xml
+          buildCommand: dotnet build .
+          testCommand: dotnet test .
+          projectKey: delorenzosoftware_template
+          projectName: template
+          sonarOrganisation: delorenzosoftware
+          beginArguments: /d:sonar.verbose="true" /d:sonar.cs.opencover.reportsPaths="./coverage-results/coverage.xml" /d:sonar.coverage.exclusions="**/*.cs"
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
