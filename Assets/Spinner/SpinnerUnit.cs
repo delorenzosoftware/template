@@ -76,7 +76,7 @@ public class SpinnerUnit : SpinnerControl, ISpinnerUnitAdapter
         _joint.anchor = Vector3.zero;
 
         var motor = _joint.motor;
-        motor.force = 0;
+        motor.force = _motorForce;
         _joint.motor = motor;
 
         if (transform.parent)
