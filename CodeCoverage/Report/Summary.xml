@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageReport scope="Summary">
+  <Summary>
+    <Generatedon>10/11/2021 - 17:25:15</Generatedon>
+    <Parser>OpenCoverParser</Parser>
+    <Assemblies>4</Assemblies>
+    <Classes>13</Classes>
+    <Files>8</Files>
+    <Coveredlines>222</Coveredlines>
+    <Uncoveredlines>88</Uncoveredlines>
+    <Coverablelines>310</Coverablelines>
+    <Totallines>717</Totallines>
+    <Linecoverage>71.6</Linecoverage>
+    <Coveredbranches>0</Coveredbranches>
+    <Totalbranches>0</Totalbranches>
+  </Summary>
+  <Coverage>
+    <Assembly name="Common" classes="4" coverage="60.4" coveredlines="49" coverablelines="81" totallines="517" branchcoverage="" coveredbranches="0" totalbranches="0">
+      <Class name="AudioIntegration" coverage="0" coveredlines="0" coverablelines="11" totallines="159" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="IDynamicLogic" coverage="100" coveredlines="22" coverablelines="22" totallines="40" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Integration" coverage="60" coveredlines="27" coverablelines="45" totallines="159" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="StateChangeEvent[T]" coverage="0" coveredlines="0" coverablelines="3" totallines="159" branchcoverage="" coveredbranches="0" totalbranches="0" />
+    </Assembly>
+    <Assembly name="Editor" classes="1" coverage="0" coveredlines="0" coverablelines="26" totallines="82" branchcoverage="" coveredbranches="0" totalbranches="0">
+      <Class name="SpinnerLogicTests" coverage="0" coveredlines="0" coverablelines="26" totallines="82" branchcoverage="" coveredbranches="0" totalbranches="0" />
+    </Assembly>
+    <Assembly name="Runtime" classes="3" coverage="92.8" coveredlines="39" coverablelines="42" totallines="191" branchcoverage="" coveredbranches="0" totalbranches="0">
+      <Class name="ElementDestroy" coverage="100" coveredlines="5" coverablelines="5" totallines="13" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="SpinnerTest" coverage="90" coveredlines="27" coverablelines="30" totallines="89" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="WaitForTestEnd" coverage="100" coveredlines="7" coverablelines="7" totallines="89" branchcoverage="" coveredbranches="0" totalbranches="0" />
+    </Assembly>
+    <Assembly name="Spinner" classes="5" coverage="83.2" coveredlines="134" coverablelines="161" totallines="714" branchcoverage="" coveredbranches="0" totalbranches="0">
+      <Class name="SpinnerControl" coverage="83.7" coveredlines="31" coverablelines="37" totallines="190" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="SpinnerGroup" coverage="100" coveredlines="12" coverablelines="12" totallines="25" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="SpinnerLogic" coverage="91.4" coveredlines="32" coverablelines="35" totallines="190" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="SpinnerSimulation" coverage="100" coveredlines="9" coverablelines="9" totallines="190" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="SpinnerUnit" coverage="73.5" coveredlines="50" coverablelines="68" totallines="119" branchcoverage="" coveredbranches="0" totalbranches="0" />
+    </Assembly>
+  </Coverage>
+</CoverageReport>
