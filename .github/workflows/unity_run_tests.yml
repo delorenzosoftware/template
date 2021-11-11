@@ -1,8 +1,8 @@
-name: Unity run tests
+name: Unity Run Tests
 on: [push] #, pull_request
 
 jobs:
-  testAllModes:
+  check-application:
     name: Test in ${{ matrix.testMode }}
     runs-on: ubuntu-latest
     strategy:
