@@ -185,7 +185,7 @@ public class SpinnerSimulation
     public void UpdateSpinnerMotor(float speed)
     {
         var motor = _adapter.Motor;
-        motor.targetVelocity = speed * 50 * _adapter.SpeedFactor;
+        motor.targetVelocity = Mathf.Abs(speed * 50 * _adapter.SpeedFactor);
         _adapter.Motor = motor;
     }
 }
