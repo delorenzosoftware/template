@@ -44,15 +44,16 @@ public abstract class SpinnerControl : MonoBehaviour, ISpinnerControlAdapter
     }
 
     private float speed;
-    public float Speed { 
-        get => speed; 
-        
-        set 
+    public float Speed
+    {
+        get => speed;
+
+        set
         {
             speed = value;
             _speed = _spinnerLogic.SpeedValue;
         }
-        
+
     }
 
     private int forceOnStatus;
@@ -97,14 +98,14 @@ public interface ISpinnerControlAdapter
     public bool _Reverse { get; }
     public float _Speed { get; }
 
-	public bool IsOn { get; set; }
-	public bool Reverse { get; set; }
-	public float Speed { get; set; }
+    public bool IsOn { get; set; }
+    public bool Reverse { get; set; }
+    public float Speed { get; set; }
 
-	public int ForceOnStatus { get; set; }
-	public int ForceReverseStatus { get; set; }
-	public bool ReleaseSpeedStatus { get; set; }
-	public float ForcedSpeedValue { get; set; }
+    public int ForceOnStatus { get; set; }
+    public int ForceReverseStatus { get; set; }
+    public bool ReleaseSpeedStatus { get; set; }
+    public float ForcedSpeedValue { get; set; }
 }
 
 public class SpinnerLogic : IDynamicLogic
@@ -150,11 +151,11 @@ public class SpinnerLogic : IDynamicLogic
 
     public override void UpdateSimulation()
     {
-        if(_isPending && _simulations != null)
+        if (_isPending && _simulations != null)
         {
             var speed = 0f;
 
-            if(_adapter._IsOn)
+            if (_adapter._IsOn)
             {
                 speed = _adapter._Speed * (_adapter._Reverse ? -1 : 1);
                 _adapter.Integration.HandleNoiseChange(speed / 10);
@@ -164,7 +165,7 @@ public class SpinnerLogic : IDynamicLogic
                 _adapter.Integration.HandleNoiseChange();
             }
 
-            for(int i = 0; i < _simulations.Length; i++)
+            for (int i = 0; i < _simulations.Length; i++)
             {
                 _simulations[i].UpdateSpinnerMotor(speed);
             }
@@ -184,7 +185,7 @@ public class SpinnerSimulation
     public void UpdateSpinnerMotor(float speed)
     {
         var motor = _adapter.Motor;
-        motor.targetVelocity = speed * 50 * _adapter.SpeedFactor;
+        motor.targetVelocity = Mathf.Abs(speed * 50 * _adapter.SpeedFactor);
         _adapter.Motor = motor;
     }
 }
