@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Bazinga.Extensions;
+using UnityEngine;
 
 public abstract class SpinnerControl : MonoBehaviour, ISpinnerControlAdapter
 {
